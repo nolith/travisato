@@ -5,10 +5,7 @@
   roles:
     - role: nolith.docker
   tasks:
-    - pip:
-      name: docker-py
-      version: 1.7.0
-      state: present
+    - pip: name=docker-py version=1.7.0
     - docker_image: name=citizenstig/httpbin
 
 - hosts: all
