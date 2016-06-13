@@ -4,6 +4,13 @@
   become_method: sudo
   roles:
     - role: nolith.docker
+  tasks:
+    - docker_image: name=citizenstig/httpbin
+
+- hosts: all
+  become: yes
+  become_method: sudo
+  roles:
     - role: nolith.docker_container
       container_name: httpbin
       docker_image: citizenstig/httpbin
