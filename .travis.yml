@@ -18,6 +18,7 @@ script:
   - cat /etc/lsb-release
   - docker stop ansible || true
   - docker rm ansible || true
+  - export IMAGE_FULL="${IMAGE}:${VERSION}"
   - docker pull ${IMAGE_FULL}
   - docker run --privileged -d --name ansible -v `pwd`:/data ${IMAGE_FULL}
   - docker exec -it ansible /bin/sh -c "ansible-galaxy install -v nolith.docker"
