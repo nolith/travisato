@@ -6,6 +6,7 @@
     - role: nolith.docker
   tasks:
     - pip: name=docker-py version=1.7.0
+    - docker_image: name=alpine
     - docker_image: name=citizenstig/httpbin
 
 - hosts: all
@@ -18,8 +19,7 @@
       ports:
         - 8000:8000
   tasks:
-    - debug: msg="System {{ inventory_hostname }}"
-    - debug: var={{hostvars}}
+    - command: docker run --rm alpine echo 'Ciao'
     - command: cat /etc/init/httpbin.conf
     - command: cat /var/log/upstart/httpbin.log
       failed_when: False
